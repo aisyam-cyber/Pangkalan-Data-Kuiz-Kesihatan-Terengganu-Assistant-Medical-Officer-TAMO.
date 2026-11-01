@@ -271,14 +271,14 @@
   <main>
     <!-- 1. HALAMAN UTAMA KUIZ -->
     <div id="view-home" class="card" style="text-align:center;">
-      <div class="wow-badge"><i class="fa-solid fa-heart-pulse"></i> SIRI 1 RASMI: CABARAN MASA 12 SAAT</div>
-      <h2 class="main-title-text">KUIZ HIPERTENSI & KESIHATAN JANTUNG</h2>
-      <p style="color:var(--text-muted); font-style:italic; margin-top:6px; font-weight: 500;">“Cegah Tekanan Darah Tinggi, Lindungi Jantung Anda!”</p>
+      <div class="wow-badge"><i class="fa-solid fa-kit-medical"></i> SIRI 2 RASMI: CABARAN MASA 12 SAAT</div>
+      <h2 class="main-title-text">KUIZ PERTOLONGAN CEMAS & CPR BASIK</h2>
+      <p style="color:var(--text-muted); font-style:italic; margin-top:6px; font-weight: 500;">“Kemahiran Menyelamatkan Nyawa di Tangan Anda!”</p>
 
       <!-- BLINKING BANNER TARIKH TUTUP -->
       <div class="blinking-box">
         <div class="blinking-text">
-          <i class="fa-solid fa-clock-rotate-left"></i> TARIKH TUTUP: 31 OKTOBER 2026 (11:59 MALAM)
+          <i class="fa-solid fa-clock-rotate-left"></i> TARIKH TUTUP: 15 NOVEMBER 2026 (11:59 MALAM)
         </div>
         <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px; font-weight:600;">
           Masa Terhad ATAU Had 500 Penyertaan Terawal (Mana-mana tiba dahulu)
@@ -292,7 +292,7 @@
       </div>
 
       <div class="leaderboard-box">
-        <div class="leaderboard-title"><i class="fa-solid fa-crown" style="color:var(--gold-premium);"></i> CARTA RANKING SIRI 1 TERKINI</div>
+        <div class="leaderboard-title"><i class="fa-solid fa-crown" style="color:var(--gold-premium);"></i> CARTA RANKING SIRI 2 TERKINI</div>
         <ul class="ranking-list" id="home-ranking-list-container">
           <li style="font-size:0.85rem; color:gray;">Sedang memuat naik carta pemenang...</li>
         </ul>
@@ -317,7 +317,7 @@
 
       <div class="quiz-info-box">
         <p><strong><i class="fa-solid fa-clock" style="color:var(--accent-blue);"></i> Masa Menjawab:</strong> <strong>12 SAAT SAHAJA</strong> bagi setiap soalan.</p>
-        <p><strong><i class="fa-solid fa-shuffle" style="color:var(--gold-premium);"></i> Kedudukan Rawak:</strong> Susunan jawapan berbeza bagi setiap percubaan.</p>
+        <p><strong><i class="fa-solid fa-shuffle" style="color:var(--gold-premium);"></i> Kedudukan Rawak:</strong> Susunan jawapan diacak secara rawak setiap pusingan.</p>
         <p><strong><i class="fa-solid fa-rotate-right" style="color:var(--wrong-red);"></i> Auto-Skip:</strong> Gagal menjawab dalam 12 saat akan dikira <strong>TOLAK MARKAH (SALAH)</strong>.</p>
       </div>
 
@@ -369,7 +369,7 @@
       </p>
 
       <div class="leaderboard-box">
-        <div class="leaderboard-title"><i class="fa-solid fa-crown" style="color:var(--gold-premium);"></i> CARTA RANKING SIRI 1 LIVE</div>
+        <div class="leaderboard-title"><i class="fa-solid fa-crown" style="color:var(--gold-premium);"></i> CARTA RANKING SIRI 2 LIVE</div>
         <ul class="ranking-list" id="result-ranking-list-container"></ul>
       </div>
 
@@ -407,11 +407,11 @@
       <button style="background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer;" onclick="closeSidebar()">&times;</button>
     </div>
 
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">Pilih siri pertandingan untuk melihat rekod pemenang tertinggi:</p>
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">Pilih siri pertandingan untuk melihat rekod pemenang:</p>
 
     <div class="series-tabs">
-      <button class="series-tab-btn active" id="tab-siri1" onclick="switchSeriesTab('SIRI_1')">Siri 1 (Hipertensi)</button>
-      <button class="series-tab-btn" id="tab-siri2" onclick="switchSeriesTab('SIRI_2')">Siri 2 (CPR)</button>
+      <button class="series-tab-btn" id="tab-siri1" onclick="switchSeriesTab('SIRI_1')">Siri 1 (Hipertensi)</button>
+      <button class="series-tab-btn active" id="tab-siri2" onclick="switchSeriesTab('SIRI_2')">Siri 2 (CPR)</button>
     </div>
 
     <div class="leaderboard-box" style="margin-top:0;">
@@ -429,25 +429,26 @@
   <script>
     // ** TAMPAL URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI **
     const GAS_ENDPOINT = "https://script.google.com/a/macros/moh.gov.my/s/AKfycbxA9bVVGX8MZRu9tmY69QHidHpM1DvlZy8j14ZLX5nw9q-ckeVHUR7NYXOTfnCbwLObhA/exec";
-    const CURRENT_SERIES_KEY = "SIRI_1";
-    const QUESTION_TIME_LIMIT = 12.0; // 12 SAAT MENJAWAB
+    const CURRENT_SERIES_KEY = "SIRI_2"; // KUNCI DITUKAR KEPADA SIRI_2
+    const QUESTION_TIME_LIMIT = 12.0;
 
+    // SENARAI 15 SOALAN KLINIKAL RASMI BAGI SIRI 2 (PERTOLONGAN CEMAS & CPR)
     const rawQuizData = [
-      { nombor: 1, soalan: "Apakah julat bacaan tekanan darah normal bagi seorang dewasa yang sihat?", pilihanA: "Bawah 120/80 mmHg", pilihanB: "140/90 mmHg", pilihanC: "160/100 mmHg", pilihanD: "180/110 mmHg", jawapanBetul: "Bawah 120/80 mmHg", penerangan: "Tekanan darah normal dewasa ialah kurang daripada 120/80 mmHg." },
-      { nombor: 2, soalan: "Pengambilan bahan makanan manakah yang paling berisiko meningkatkan tekanan darah?", pilihanA: "Garam (Natrium) berlebihan", pilihanB: "Gula berlebihan", pilihanC: "Protein tinggi", pilihanD: "Vitamin C", jawapanBetul: "Garam (Natrium) berlebihan", penerangan: "Natrium berlebihan dalam garam menyebabkan penahanan air dan meningkatkan tekanan darah." },
-      { nombor: 3, soalan: "Mengapakah Hipertensi sering dipanggil sebagai 'Pembunuh Senyap' (Silent Killer)?", pilihanA: "Kerana kerap berlaku tanpa gejala jelas sehingga komplikasi berlaku", pilihanB: "Kerana tiada penawar", pilihanC: "Kerana hanya berlaku waktu malam", pilihanD: "Kerana pesakit tidak boleh bercakap", jawapanBetul: "Kerana kerap berlaku tanpa gejala jelas sehingga komplikasi berlaku", penerangan: "Hipertensi sering tidak menunjukkan sebarang gejala awal sehingga berlaku strok atau serangan jantung." },
-      { nombor: 4, soalan: "Berapakah had pengambilan garam harian yang disyorkan oleh Pertubuhan Kesihatan Sedunia (WHO)?", pilihanA: "1 sudu teh (kurang 5 gram)", pilihanB: "3 sudu teh", pilihanC: "1 sudu makan", pilihanD: "Tiada had", jawapanBetul: "1 sudu teh (kurang 5 gram)", penerangan: "WHO mengesyorkan pengambilan garam kurang daripada 5 gram (kira-kira 1 sudu teh) sehari." },
-      { nombor: 5, soalan: "Apakah organ utama yang paling berisiko mengalami kerosakan akibat tekanan darah tinggi yang tidak dikawal?", pilihanA: "Jantung, Otak, dan Buah Pinggang", pilihanB: "Rambut dan Kuku", pilihanC: "Tulang belakang", pilihanD: "Gigi dan Gusi", jawapanBetul: "Jantung, Otak, dan Buah Pinggang", penerangan: "Hipertensi berterusan merosakkan salur darah di otak (strok), jantung, dan buah pinggang." },
-      { nombor: 6, soalan: "Manakah antara berikut merupakan senaman aerobik yang baik untuk kesihatan jantung?", pilihanA: "Berjalan laju atau berbasikal 30 minit sehari", pilihanB: "Tidur sepanjang hari", pilihanC: "Bermain video game", pilihanD: "Mengangkat berat tanpa henti", jawapanBetul: "Berjalan laju atau berbasikal 30 minit sehari", penerangan: "Aktiviti fizikal sederhana 150 minit seminggu (30 minit x 5 hari) menguatkan otot jantung." },
-      { nombor: 7, soalan: "Apakah gejala amaran awal bagi serangan jantung yang memerlukan bantuan kecemasan segera?", pilihanA: "Sakit/ketat dada menjalar ke lengan atau rahang", pilihanB: "Gatal di tapak kaki", pilihanC: "Bersin berterusan", pilihanD: "Mata berair", jawapanBetul: "Sakit/ketat dada menjalar ke lengan atau rahang", penerangan: "Sakit dada yang mencengkam dan menjalar ke lengan kiri/rahang ialah tanda amaran serangan jantung." },
-      { nombor: 8, soalan: "Apakah alat yang digunakan untuk mengukur tekanan darah di fasiliti kesihatan?", pilihanA: "Sphygmomanometer", pilihanB: "Stetoskop sahaja", pilihanC: "Thermometer", pilihanD: "Glucometer", jawapanBetul: "Sphygmomanometer", penerangan: "Sphygmomanometer digunakan untuk mengukur tekanan darah arteri." },
-      { nombor: 9, soalan: "Apakah jenis lemak yang perlu dielakkan untuk mencegah salur darah tersumbat?", pilihanA: "Lemak Tepu dan Lemak Trans", pilihanB: "Omega-3", pilihanC: "Minyak Zaitun", pilihanD: "Lemak tidak tepu", jawapanBetul: "Lemak Tepu dan Lemak Trans", penerangan: "Lemak trans dan lemak tepu meningkatkan kolesterol jahat (LDL) yang menyumbat salur darah." },
-      { nombor: 10, soalan: "Apakah nombor talian kecemasan rasmi di Malaysia jika berlaku kes serangan jantung di rumah?", pilihanA: "999", pilihanB: "991", pilihanC: "112", pilihanD: "100", jawapanBetul: "999", penerangan: "Talian kecemasan 999 menyambungkan bantuan ambulans dengan pantas." },
-      { nombor: 11, soalan: "Berapakah frekuensi saringan tekanan darah yang disyorkan bagi dewasa berusia 30 tahun ke atas?", pilihanA: "Sekurang-kurangnya sekali seminggu/sebulan mengikut risiko", pilihanB: "5 tahun sekali", pilihanC: "Hanya bila sakit kepala", pilihanD: "Tidak perlu periksa", jawapanBetul: "Sekurang-kurangnya sekali seminggu/sebulan mengikut risiko", penerangan: "Saringan berkala membolehkan pengesanan awal hipertensi sebelum komplikasi." },
-      { nombor: 12, soalan: "Apakah kesan merokok terhadap salur darah dan jantung?", pilihanA: "Memenatkan jantung dan merosakkan lapisan salur darah", pilihanB: "Membersihkan paru-paru", pilihanC: "Menurunkan tekanan darah", pilihanD: "Meningkatkan tahap oksigen", jawapanBetul: "Memenatkan jantung dan merosakkan lapisan salur darah", penerangan: "Nikotin dan toksin rokok menyempitkan salur darah serta meningkatkan kadar denyutan jantung." },
-      { nombor: 13, soalan: "Apakah ubat asas yang sering dipreskripsikan untuk membuang lebihan cecair dan natrium dalam badan?", pilihanA: "Diuretik (Ubat buang air kecil)", pilihanB: "Antibiotik", pilihanC: "Ubat batuk", pilihanD: "Paracetamol", jawapanBetul: "Diuretik (Ubat buang air kecil)", penerangan: "Diuretik membantu buah pinggang menyingkirkan cecair lebihan untuk menurunkan tekanan darah." },
-      { nombor: 14, soalan: "Mengapakah pesakit hipertensi tidak boleh menghentikan ubat darah tinggi secara tiba-tiba tanpa nasihat doktor?", pilihanA: "Boleh menyebabkan tekanan darah melambung tinggi secara mendadak (Rebound Hypertension)", pilihanB: "Boleh menyebabkan rambut gugur", pilihanC: "Ubat akan tamat luput", pilihanD: "Tiada sebarang kesan", jawapanBetul: "Boleh menyebabkan tekanan darah melambung tinggi secara mendadak (Rebound Hypertension)", penerangan: "Menghentikan ubat secara mendadak berisiko mencetuskan krisis hipertensi dan strok." },
-      { nombor: 15, soalan: "Apakah indeks jisim tubuh (BMI) ideal untuk mengurangkan risiko penyakit kardiovaskular?", pilihanA: "18.5 hingga 24.9 kg/m²", pilihanB: "30.0 hingga 35.0 kg/m²", pilihanC: "Atas 40 kg/m²", pilihanD: "Bawah 15 kg/m²", jawapanBetul: "18.5 hingga 24.9 kg/m²", penerangan: "BMI ideal 18.5 - 24.9 menunjukkan berat badan sihat yang mengurangkan beban kerja jantung." }
+      { nombor: 1, soalan: "Apakah langkah pertama paling utama sebelum anda mendekati mangsa kemalangan?", pilihanA: "Pastikan kawasan persekitaran selamat (Danger)", pilihanB: "Terus tekan dada mangsa", pilihanC: "Beri bantuan pernafasan", pilihanD: "Cari peti pertolongan cemas", jawapanBetul: "Pastikan kawasan persekitaran selamat (Danger)", penerangan: "Prinsip D.R.S.A.B.C bermula dengan 'Danger' bagi memastikan keselamatan penyelamat dan mangsa." },
+      { nombor: 2, soalan: "Berapakah kadar mampatan dada (compression rate) yang disyorkan seminit untuk CPR dewasa?", pilihanA: "100 hingga 120 mampatan seminit", pilihanB: "60 hingga 80 mampatan seminit", pilihanC: "140 hingga 160 mampatan seminit", pilihanD: "50 mampatan seminit", jawapanBetul: "100 hingga 120 mampatan seminit", penerangan: "Kadar mampatan CPR yang berkualiti tinggi mengikut garis panduan AHA/KKM ialah 100 - 120 seminit." },
+      { nombor: 3, soalan: "Apakah nisbah mampatan dada kepada bantuan pernafasan bagi CPR seorang penyelamat dewasa?", pilihanA: "30 mampatan : 2 bantuan nafas", pilihanB: "15 mampatan : 2 bantuan nafas", pilihanC: "5 mampatan : 1 bantuan nafas", pilihanD: "50 mampatan : 5 bantuan nafas", jawapanBetul: "30 mampatan : 2 bantuan nafas", penerangan: "Nisbah standard CPR dewasa ialah 30 kali mampatan dada diikuti 2 hembusan nafas bantuan." },
+      { nombor: 4, soalan: "Berapakah kedalaman mampatan dada yang ideal semasa melakukan CPR pada mangsa dewasa?", pilihanA: "Sekurang-kurangnya 5 cm (tidak melebihi 6 cm)", pilihanB: "Sekitar 2 cm sahaja", pilihanC: "Lebih daripada 8 cm", pilihanD: "1 cm", jawapanBetul: "Sekurang-kurangnya 5 cm (tidak melebihi 6 cm)", penerangan: "Kedalaman mampatan dada dewasa yang berkesan ialah 5 cm (2 inci) hingga 6 cm." },
+      { nombor: 5, soalan: "Apakah tindakan kecemasan pertama bagi mangsa tercekik (choking) dewasa yang sedar tetapi tidak boleh bernafas atau bersuara?", pilihanA: "Tekanan Abdomen (Heimlich Maneuver)", pilihanB: "Beri minum segelas air", pilihanC: "Baringkan mangsa dan angkat kaki", pilihanD: "Lakukan CPR serta-merta", jawapanBetul: "Tekanan Abdomen (Heimlich Maneuver)", penerangan: "Heimlich Maneuver dilakukan untuk menolak keluar bendasing yang menyekat saluran pernafasan mangsa sedar." },
+      { nombor: 6, soalan: "Apakah fungsi utama peranti AED (Automated External Defibrillator)?", pilihanA: "Menganalisis rentak jantung dan memberi kejutan elektrik jika perlu", pilihanB: "Mengukur tekanan darah dan nadi", pilihanC: "Memberikan oksigen ke paru-paru secara mekanikal", pilihanD: "Menghentikan pendarahan arteri", jawapanBetul: "Menganalisis rentak jantung dan memberi kejutan elektrik jika perlu", penerangan: "AED merawat ritma renjatan jantung seperti Ventricular Fibrillation (VF) untuk mengembalikan degupan normal." },
+      { nombor: 7, soalan: "Apakah rawatan awal yang betul untuk merawat luka melecur/terbakar ringan (First-degree burn)?", pilihanA: "Alirkan air paip bersuhu bilik selama 10-20 minit", pilihanB: "Sapu ubat gigi atau mentega", pilihanC: "Letak ketulan ais terus pada luka", pilihanD: "Pecahkan gelembung cecair lepuh", jawapanBetul: "Alirkan air paip bersuhu bilik selama 10-20 minit", penerangan: "Mengalirkan air sejuk paip dapat menghentikan proses pembakaran tisu kulit tanpa merosakkan sel." },
+      { nombor: 8, soalan: "Bagaimanakah cara mengawal pendarahan luaran yang mengalir deras daripada luka anggota?", pilihanA: "Tekanan langsung (Direct Pressure) pada luka dengan kain bersih", pilihanB: "Basuh luka dengan sabun berbuih tebal", pilihanC: "Biarkan darah mengalir sehingga berhenti sendiri", pilihanD: "Sapukan minyak gamat secara terus", jawapanBetul: "Tekanan langsung (Direct Pressure) pada luka dengan kain bersih", penerangan: "Tekanan langsung adalah kaedah paling pantas dan berkesan menghentikan pendarahan luaran." },
+      { nombor: 9, soalan: "Jika mangsa tidak sedar tetapi bernafas secara normal, apakah posisi terbaik untuk mangsa?", pilihanA: "Kedudukan Pemulihan (Recovery Position)", pilihanB: "Duduk menegak", pilihanC: "Menelentang tanpa bantal", pilihanD: "Meniarap", jawapanBetul: "Kedudukan Pemulihan (Recovery Position)", penerangan: "Posisi pemulihan memastikan saluran pernafasan kekal terbuka dan mengelakkan mangsa tersedak muntah." },
+      { nombor: 10, soalan: "Berapakah nombor talian kecemasan bersepadu di Malaysia untuk memanggil ambulans?", pilihanA: "999", pilihanB: "991", pilihanC: "112", pilihanD: "000", jawapanBetul: "999", penerangan: "Talian MERS 999 adalah talian kecemasan rasmi di Malaysia untuk perkhidmatan ambulans, polis, dan bomba." },
+      { nombor: 11, soalan: "Di manakah lokasi peletakan tangan yang betul untuk melakukan mampatan dada CPR?", pilihanA: "Separuh bahagian bawah tulang dada (Lower half of sternum)", pilihanB: "Bahagian perut atas (Epigastrium)", pilihanC: "Tepat di atas rusuk sebelah kiri", pilihanD: "Di atas leher", jawapanBetul: "Separuh bahagian bawah tulang dada (Lower half of sternum)", penerangan: "Kedudukan tangan adalah di bahagian tengah dada mangsa (separuh bawah sternum)." },
+      { nombor: 12, soalan: "Apakah yang dimaksudkan dengan istilah 'Hands-Only CPR' untuk penyelamat awam yang tidak terlatih?", pilihanA: "CPR hanya dengan mampatan dada berterusan tanpa bantuan pernafasan", pilihanB: "Memegang tangan mangsa sehingga ambulans tiba", pilihanC: "Menampar pipi mangsa untuk menyedarkannya", pilihanD: "Mengurut tangan dan jari-jemari mangsa", jawapanBetul: "CPR hanya dengan mampatan dada berterusan tanpa bantuan pernafasan", penerangan: "Hands-Only CPR menumpukan pada mampatan dada pantas tanpa henti bagi mengalirkan oksigen ke otak." },
+      { nombor: 13, soalan: "Apakah tanda-tanda utama seseorang itu mengalami renjatan (shock) akibat kehilangan darah?", pilihanA: "Kulit pucat/sejuk, nadi laju dan lemah, kekeliruan", pilihanB: "Muka kemerah-merahan dan bertenaga", pilihanC: "Suhu badan meningkat mendadak", pilihanD: "Kadar pernafasan menjadi sangat perlahan", jawapanBetul: "Kulit pucat/sejuk, nadi laju dan lemah, kekeliruan", penerangan: "Renjatan peredaran darah ditandai dengan perfusi tisu periferi yang lemah (pucat, berpeluh dingin, nadi pantas)." },
+      { nombor: 14, soalan: "Berapa lamakah pemeriksaan nadi karotid dan pernafasan mangsa perlu dilakukan sebelum memulakan CPR?", pilihanA: "Tidak melebihi 10 saat", pilihanB: "Sekurang-kurangnya 1 minit", pilihanC: "2 minit penuh", pilihanD: "30 saat", jawapanBetul: "Tidak melebihi 10 saat", penerangan: "Pemeriksaan respons, nadi, dan nafas tidak boleh melebihi 10 saat untuk mengelakkan kelewatan bantuan CPR." },
+      { nombor: 15, soalan: "Apakah tindakan yang PERLU dielakkan semasa mangsa mengalami sawan (seizure)?", pilihanA: "Memasukkan sudu atau objek ke dalam mulut mangsa", pilihanB: "Melindungi kepala mangsa dengan kain lembut", pilihanC: "Menjauhkan objek tajam di sekeliling mangsa", pilihanD: "Mencatat tempoh masa sawan berlangsung", jawapanBetul: "Memasukkan sudu atau objek ke dalam mulut mangsa", penerangan: "Jangan sesekali memasukkan objek ke dalam mulut pesakit sawan kerana ia berisiko mematahkan gigi dan menyekat nafas." }
     ];
 
     let quizData = [];
@@ -475,7 +476,6 @@
       return arr;
     }
 
-    // MEMSEDIAKAN SOALAN & MENGOCOK PILIHAN JAWAPAN (OPTION SHUFFLER)
     function prepareShuffledQuizData() {
       quizData = rawQuizData.map(q => {
         let optsText = [q.pilihanA, q.pilihanB, q.pilihanC, q.pilihanD];
@@ -547,7 +547,7 @@
     function openSidebar() {
       document.getElementById("sidebar-overlay").classList.add("active");
       document.getElementById("sidebar-drawer").classList.add("open");
-      switchSeriesTab('SIRI_1');
+      switchSeriesTab('SIRI_2');
     }
 
     function closeSidebar() {
@@ -584,7 +584,7 @@
       currentPlayerPosition = posInput;
       currentPlayerPTJ = ptjInput;
 
-      prepareShuffledQuizData(); // KOCOK JAWAPAN SECARA RAWAK UNTUK PERCUBAAN INI
+      prepareShuffledQuizData();
 
       currentQuestionIdx = 0;
       userAnswers = {};
@@ -713,9 +713,9 @@
       document.getElementById("result-correct").innerText = correctCount;
       document.getElementById("result-wrong").innerText = wrongCount;
 
-      let msg = "Tahniah! Kelajuan & Ketepatan Cemerlang.";
-      if (score < 50) msg = "Teruskan latihan kepantasan minda kesihatan anda!";
-      else if (score < 80) msg = "Syabas! Keputusan pantas yang memuaskan.";
+      let msg = "Tahniah! Respon Pantas & Tepat CPR Menyelamatkan Nyawa.";
+      if (score < 50) msg = "Teruskan latihan kepantasan dan kemahiran kecemasan anda!";
+      else if (score < 80) msg = "Syabas! Kefahaman asas CPR anda berada pada tahap baik.";
       document.getElementById("result-motivation").innerText = msg;
 
       if (res.status === "SUCCESS" && res.leaderboard) {
@@ -789,13 +789,13 @@
 
     function shareFacebookResult() {
       const score = document.getElementById("result-score").innerText;
-      const text = encodeURIComponent(`Saya (${currentPlayerName}) mendapat markah ${score} (${totalTimeTaken.toFixed(1)}s) dalam Pertandingan TAMO SPEED QUIZ (Siri 1)! Bolehkah anda tewaskan rekod saya? Cuba di: ${window.location.href}`);
+      const text = encodeURIComponent(`Saya (${currentPlayerName}) mendapat markah ${score} (${totalTimeTaken.toFixed(1)}s) dalam Pertandingan TAMO SPEED QUIZ (Siri 2: CPR)! Bolehkah anda tewaskan rekod saya? Cuba di: ${window.location.href}`);
       window.open(`https://www.facebook.com/sharer/sharer.php?quote=${text}&u=${encodeURIComponent(window.location.href)}`, '_blank');
     }
 
     function shareWhatsAppResult() {
       const score = document.getElementById("result-score").innerText;
-      const text = encodeURIComponent(`Saya (${currentPlayerName}) mendapat markah ${score} (${totalTimeTaken.toFixed(1)}s) dalam Pertandingan TAMO SPEED QUIZ (Siri 1)! Cabar rekod pemenang di: ${window.location.href}`);
+      const text = encodeURIComponent(`Saya (${currentPlayerName}) mendapat markah ${score} (${totalTimeTaken.toFixed(1)}s) dalam Pertandingan TAMO SPEED QUIZ (Siri 2: CPR)! Cabar rekod pemenang di: ${window.location.href}`);
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
   </script>
